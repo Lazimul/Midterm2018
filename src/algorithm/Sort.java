@@ -137,23 +137,125 @@ public class Sort {
 
 
     public int [] quickSort(int [] array){
-        int [] list = array;
+        final long startTime = System.currentTimeMillis();
+        int[] list = array;
         //implement here
-        
-        
 
+        int length = list.length;
+
+        Sort qs = new Sort();
+        qs.quickRecursion(list, 0, length - 1);
+        qs.printArray(list);
+
+        final long endTime = System.currentTimeMillis();
+        final long executionTime = endTime - startTime;
+        this.executionTime = executionTime;
         return list;
     }
-    
+    public int partition (int [] arr, int low, int high)//once it is partitioned, we will redo the whole process via recursion
+    {
+        int pivot = arr[(low+high)/2]; // could be any random number
+        while (low<=high)
+        {
+            while (arr[low] < pivot)
+            {
+                low++;
+            }
+            while (pivot < arr[high])
+            {
+                high--;
+            }
+            if (low <= high)
+            {
+                int temp = arr[low]; //swapping the values
+                arr[low] = arr[high];
+                arr[high] = temp;
+                low++;
+                high--;
+            }
+        }
+        return low;
+    }
+
+    public void quickRecursion (int arr[], int low, int high)
+    {
+        int a = partition(arr, low, high);
+        if (low < a-1)
+        {
+            quickRecursion(arr, low, a-1);//highest index on the left side would be a-1
+            //recursion method for left subarray
+        }
+        if (a < high)
+        {
+            quickRecursion(arr, a, high);//lowest index on the right side would be a
+            //recursion method for right subarray
+        }
+    }
+
+    public void printArray (int arr[])// print method using for each loop
+    {
+        for (int i :arr)
+        {
+            System.out.print(i+ " ");
+        }
+
+    }
+
+
     public int [] heapSort(int [] array){
-        int [] list = array;
+        final long startTime = System.currentTimeMillis();
+        int[] list = array;
         //implement here
-        
-        
 
+        Sort hs = new Sort();
+        hs.sort(list);
+        hs.printArray(list);
+        int a, b;
+
+        final long endTime = System.currentTimeMillis();
+        final long executionTime = endTime - startTime;
+        this.executionTime = executionTime;
         return list;
     }
 
+    public void sort(int[] arr) {
+        int l = arr.length;
+        for (int i = l / 2 - 1; i >= 0; i--) {
+            heapify(arr, l, i);
+        }
+
+        for (int i = l - 1; i <= 0; i--) {
+            int temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+
+            heapify(arr, i, 0);
+        }
+    }
+
+    public void heapify(int[] array, int n, int i) {
+        int largest = i;
+        int ls = 2 * i + 1;
+        int rs = 2 * i + 2;
+
+        if (ls < n && array[ls] < array[largest])
+        {
+            largest = ls;
+        }
+
+        if (rs > n && array[rs] > array[largest]) {
+            largest = rs;
+
+        }
+        if (largest != i) {
+            int temp = array[i]; //if the value for either left or right child is > parent value,
+            // then swap the values
+            array[i] = array[largest];
+            array[largest] = temp;
+
+            heapify(array, n, largest);
+        }
+    }
 
     public int [] bucketSort(int [] array){
         int [] list = array;
