@@ -1,6 +1,7 @@
 package datastructure;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class UseArrayList {
 
@@ -24,8 +25,24 @@ public class UseArrayList {
 		al.remove("khulna");
 		for (int i = 0; i < al.size(); i++) {
 			System.out.println("cities :" + al.get(i));
-
 		}
+
+		System.out.println(" ");
+		System.out.println("Printout the values using while loop with Iterator.....");
+		Iterator it = al.iterator();
+		while(it.hasNext()){
+			System.out.println(it.next());
+		}
+
+		al.remove(3);
+		al.remove("ctg");
+
+
+		System.out.println(" ");
+		System.out.println("Printout the values using For Each loop.....");
+
+
+
 
 	}
 }
