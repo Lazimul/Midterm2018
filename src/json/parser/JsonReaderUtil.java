@@ -35,40 +35,46 @@ public class JsonReaderUtil {
 
      */
 
-    public static void main(String[] args)throws MalformedURLException, IOException {
+    public static void main(String[] args) throws MalformedURLException, IOException {
         String sURL = "http://info.venturepulse.org:8080/service-webapp/api/AllEmployeeResources";
         Employee emp = null;
         List<Employee> empList = new ArrayList<>();
         URL url = new URL(sURL);
         URLConnection request = url.openConnection();
         request.connect();
-        JsonArray  jsonArray = null;
+        JsonArray jsonArray = null;
         JsonParser jp = new JsonParser();
         JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
         if (root instanceof JsonObject) {
             JsonObject rootObj = root.getAsJsonObject();
         } else if (root instanceof JsonArray) {
-            jsonArray =  root.getAsJsonArray();
+            jsonArray = root.getAsJsonArray();
         }
-        for (int i = 0; i < jsonArray.size()-1; i++) {
+        for (int i = 0; i < jsonArray.size() - 1; i++) {
             try {
                 JsonObject jsonobject = jsonArray.get(i).getAsJsonObject();
                 //you code start here
+                String empEmail = jsonobject.get("empEmail").toString();
+                System.out.print(empEmail);
+                String empName = jsonobject.get("empName").toString();
+                System.out.print(empName);
+                String salary = jsonobject.get("salary").toString();
+                System.out.print(salary);
+                String department = jsonobject.get("department").toString();
+                System.out.println(department);
 
 
-
-
-
-
-
-            }catch(Exception ex){
+            } catch (Exception ex) {
 
             }
         }
-        //Print to the console.
-        for(Employee entry:empList){
-            System.out.println(entry.getEmpEmail()+" "+entry.getEmpName()+" "+entry.getSalary()+" "+entry.getDepartment());
+//Print to the console.
+        for (Employee entry : empList) {
+            System.out.println(entry.getEmpEmail() + " " + entry.getEmpName() + " " + entry.getSalary() + " " + entry.getDepartment());
         }
     }
 
+
 }
+
+

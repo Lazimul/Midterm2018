@@ -1,7 +1,6 @@
 package parser;
 
 import databases.ConnectToMongoDB;
-import databases.ConnectToSqlDB;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -59,7 +58,7 @@ public class ProcessStudentInfo {
 				seleniumStudents = xmlReader.parseData(tag, pathSelenium);
 
 				//Parse Data using parseData method and then store data into Qtp ArrayList.
-				
+				seleniumStudents = xmlReader.parseData(tag, pathSelenium);
 				//add Selenium ArrayList data into map.
 
 				//add Qtp ArrayList data into map.

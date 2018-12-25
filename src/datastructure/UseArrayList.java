@@ -1,7 +1,10 @@
 package datastructure;
 
+import databases.ConnectToSqlDB;
+
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class UseArrayList {
 
@@ -42,7 +45,16 @@ public class UseArrayList {
 		System.out.println("Printout the values using For Each loop.....");
 
 
+//Database connection established
+		ConnectToSqlDB connect = new ConnectToSqlDB();
 
+		connect.insertDataFromArrayListToSqlTable(al,"ArrayList", "ArrayData");
+
+		//Data reader added
+		List<String> numbers = connect.readDataBase("ArrayList", "ArrayData");
+		for(String student:numbers) {
+			System.out.println(student);
+		}
 
 	}
 }

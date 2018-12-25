@@ -46,4 +46,5 @@ public class DuplicateWord {
         System.out.println("Average: " + sum / count);
     }
 
+
 }
