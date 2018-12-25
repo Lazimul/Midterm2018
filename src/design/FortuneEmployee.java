@@ -24,7 +24,7 @@ public class FortuneEmployee {
 			e1.setGender('F');
 			e1.setName("Smith");
 
-			EmployeeInfo e2 = new EmployeeInfo("Robin", 101, "QA", 30000.00, 'M');
+			EmployeeInfo e2 = new EmployeeInfo("Lazim", 150, "QA", 30000.00, 'M');
 			e2.farewell();
 			e2.annualSalary();
 			e2.employeeName();
